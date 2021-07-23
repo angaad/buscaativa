@@ -1,0 +1,21 @@
+{
+    "editor.rulers": [
+        80
+    ],
+    "autoHeader": {
+        "format": {
+            "startWith": "/**",
+            "middleWith": "*",
+            "endWith": "*/",
+            "headerPrefix": "@",
+        },
+        "header": {
+            "author": "Frederico Ferracini Duarte",
+            "since": {
+                "type": "createTime",
+                "format": "YYYY-MM-DD HH:mm:ss",
+            }
+        }
+    },
+    "totvsLanguageServer.welcomePage": false
+}
