@@ -23,12 +23,17 @@ const NavigationBar = props => (
         <Navbar.Collapse className='justify-content-end'>
             <Nav activeKey={window.location.pathname}>
                 {props.isAuthenticated ? (
-                    <LinkContainer to='/'>
-                        <Nav.Link
-                            className='text-light'
-                            onClick={props.logoutRequest}>
-                            Sair</Nav.Link>
-                    </LinkContainer>
+                    <>
+                        <Nav.Item>
+                            <span>{props.user.name}</span>
+                        </Nav.Item>
+                        <LinkContainer to='/'>
+                            <Nav.Link
+                                className='text-light'
+                                onClick={props.logoutRequest}>
+                                Sair</Nav.Link>
+                        </LinkContainer>
+                    </>
                 ) : (
                     <LinkContainer to='/login'>
                         <Nav.Link className='text-light'>
@@ -43,11 +48,12 @@ const NavigationBar = props => (
 
 // MARK: - Redux
 const actions = {
-    logoutRequest
+    logoutRequest,
 }
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.appReducer.isAuthenticated
+    isAuthenticated: state.appReducer.isAuthenticated,
+    user: state.appReducer.user,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)

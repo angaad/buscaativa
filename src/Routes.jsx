@@ -8,6 +8,8 @@ import { Route, Switch } from 'react-router'
 import NotFound from './components/NotFound'
 import Home from './components/Home'
 import Login from './components/Login'
+import HomeInternal from './components/HomeApp'
+import PrivateRoute from './components/PrivateRoute'
 
 const Routes = _ => (
     <Switch>
@@ -17,6 +19,9 @@ const Routes = _ => (
         <Route exact path='/login'>
             <Login />
         </Route>
+        <PrivateRoute exact path='/internal/home'>
+            <HomeInternal />
+        </PrivateRoute>
 
         <Route>
             <NotFound />

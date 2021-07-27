@@ -18,11 +18,11 @@ const Login = props => {
     const [user, setUser] = useState("")
     const [password, setPassword] = useState("")
 
-    function validateForm() {
+    const validateForm = _ => {
         return user.length > 0 && password.length > 0
     }
 
-    function handleSubmit(event) {
+    const handleSubmit = event => {
         event.preventDefault()
 
         const encrypted = shajs('sha256').update(password).digest('hex')
@@ -52,7 +52,13 @@ const Login = props => {
                         onChange={e => setPassword(e.target.value) }
                     />
                 </Form.Group>
-
+                <div>
+                    {props.loginError ? (
+                        <span>Erro: {props.loginError}</span>
+                    ) : (
+                        <span>&nbsp;</span>
+                    )}
+                </div>
                 <br />
                 <Button
                     variant="primary"
@@ -62,7 +68,7 @@ const Login = props => {
                 </Button>
             </Form>
             {props.isAuthenticated ? (
-                <Redirect to="/" />
+                <Redirect to="/internal/home" />
             ) : ( <span /> )}
         </div>
     )
@@ -70,10 +76,11 @@ const Login = props => {
 
 // MARK: - Redux
 const actions = {
-    loginRequest
+    loginRequest,
 }
 const mapStateToProps = state => ({
-    isAuthenticated: state.appReducer.isAuthenticated
+    isAuthenticated: state.appReducer.isAuthenticated,
+    loginError: state.appReducer.loginError,
 })
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
