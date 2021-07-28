@@ -13,19 +13,19 @@ import { Nav } from 'react-bootstrap'
 const SideBar = props => (
     <Nav className='col-md-12 d-none d-md-block bg-light'>
         <Nav.Item>
-            <Nav.Link to='/internal/home'>
+            <Nav.Link href='/internal/home'>
                 <FontAwesomeIcon icon={faHome} />
                 <span>&nbsp;&nbsp;Início</span>
             </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-            <Nav.Link to='/internal/user'>
+            <Nav.Link href='/internal/user'>
                 <FontAwesomeIcon icon={faUserFriends} />
                 <span>&nbsp;&nbsp;Usuários</span>
             </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-            <Nav.Link to='/internal/home'>
+            <Nav.Link href='/internal/home'>
                 <FontAwesomeIcon icon={faBaby} />
                 <span>&nbsp;&nbsp;Crianças</span>
             </Nav.Link>
