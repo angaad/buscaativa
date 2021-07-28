@@ -6,11 +6,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faUserFriends, faBaby, faHouseUser } from '@fortawesome/free-solid-svg-icons'
+import { Nav } from 'react-bootstrap'
 
 const SideBar = props => (
-    <div>
-        SideBar!
-    </div>
+    <Nav className='col-md-12 d-none d-md-block bg-light'>
+        <Nav.Item>
+            <Nav.Link to='/internal/home'>
+                <FontAwesomeIcon icon={faHome} />
+                <span>&nbsp;&nbsp;Início</span>
+            </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+            <Nav.Link to='/internal/user'>
+                <FontAwesomeIcon icon={faUserFriends} />
+                <span>&nbsp;&nbsp;Usuários</span>
+            </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+            <Nav.Link to='/internal/home'>
+                <FontAwesomeIcon icon={faBaby} />
+                <span>&nbsp;&nbsp;Crianças</span>
+            </Nav.Link>
+        </Nav.Item>
+    </Nav>
 )
 
 // MARK: - Redux

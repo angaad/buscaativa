@@ -8,9 +8,11 @@ import promise from 'redux-promise'
 import thunk from 'redux-thunk'
 import multi from 'redux-multi'
 import appReducer from './reducers/appstate'
+import userReducer from './reducers/userstate'
 
 const reducers = combineReducers({
-    appReducer
+    appReducer,
+    userReducer
 })
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ &&

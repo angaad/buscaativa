@@ -10,6 +10,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import HomeInternal from './components/HomeApp'
 import PrivateRoute from './components/PrivateRoute'
+import UserPage from './components/UserPage'
 
 const Routes = _ => (
     <Switch>
@@ -21,6 +22,9 @@ const Routes = _ => (
         </Route>
         <PrivateRoute exact path='/internal/home'>
             <HomeInternal />
+        </PrivateRoute>
+        <PrivateRoute exact path='/internal/user'>
+            <UserPage />
         </PrivateRoute>
 
         <Route>
