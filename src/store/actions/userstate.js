@@ -22,6 +22,6 @@ export const userSearch = _ => (dispatch, getState) => {
     }
 
     axios(config)
-    .then(users => dispatch({type: USER_SEARCHED, payload: users}))
+    .then(resp => dispatch({type: USER_SEARCHED, payload: resp.data}))
     .catch(console.log)
 }
