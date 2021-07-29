@@ -4,10 +4,11 @@
  */
 
 import React, { Component } from 'react'
-import { Container } from 'react-bootstrap'
+import { Button, Container, Table } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
+import { faEye, faPencilAlt, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { userSearch } from '../store/actions/userstate'
 
 class UserPage extends Component {
@@ -19,8 +20,24 @@ class UserPage extends Component {
         const users = this.props.users || []
 
         return users.map(user => (
-            <tr key={user._id}>
-                <td>{user.name}</td>
+            <tr key={user._id} class="d-flex">
+                <td className="col-2">
+					{user.login.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}
+				</td>
+                <td className="col-8">{user.name}</td>
+				<td className="col-2" style={{textAlign: 'right'}}>
+					<Button>
+						<FontAwesomeIcon icon={faEye} />
+					</Button>
+					&nbsp;
+					<Button>
+						<FontAwesomeIcon icon={faPencilAlt} />
+					</Button>
+					&nbsp;
+					<Button>
+						<FontAwesomeIcon icon={faTrashAlt} />
+					</Button>
+				</td>
             </tr>
         ))
     }
@@ -28,17 +45,25 @@ class UserPage extends Component {
     render () {
         return (
             <Container>
-                Usuários
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Usuário</th>
+                <h1>
+					<span>Usuários</span>
+				</h1>
+				<Table striped hover>
+                    <thead className="thead-dark">
+						<tr class="d-flex">
+							<th className="col-2">CPF</th>
+                            <th className="col-8">Nome</th>
+							<th className="col-2" style={{textAlign: 'right'}}>
+								<Button>
+									<FontAwesomeIcon icon={faPlusCircle} />
+								</Button>
+							</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.renderRows()}
                     </tbody>
-                </table>
+				</Table>
             </Container>
         )
     }
