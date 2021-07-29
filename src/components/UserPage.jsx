@@ -4,6 +4,7 @@
  */
 
 import React, { Component } from 'react'
+import { Container } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -14,11 +15,31 @@ class UserPage extends Component {
         this.props.userSearch()
     }
 
+    renderRows () {
+        const users = this.props.users || []
+
+        return users.map(user => (
+            <tr key={user._id}>
+                <td>{user.name}</td>
+            </tr>
+        ))
+    }
+
     render () {
         return (
-            <div>
-                <h1>User Page!</h1>
-            </div>
+            <Container>
+                Usuários
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Usuário</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderRows()}
+                    </tbody>
+                </table>
+            </Container>
         )
     }
 }
