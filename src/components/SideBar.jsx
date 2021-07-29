@@ -7,7 +7,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUserFriends, faBaby, faHouseUser } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUserFriends, faBaby, faHouseUser }
+    from '@fortawesome/free-solid-svg-icons'
 import { Nav } from 'react-bootstrap'
 
 const SideBar = props => (
