@@ -7,29 +7,38 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUserFriends, faBaby, faHouseUser }
+import { faHome, faUserFriends, faBaby }
     from '@fortawesome/free-solid-svg-icons'
 import { Nav } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+
+import './Sidebar.css'
 
 const SideBar = props => (
-    <Nav className='col-md-12 d-none d-md-block bg-light'>
+    <Nav className='col-md-12 d-none d-md-block bg-light sidebar'>
         <Nav.Item>
-            <Nav.Link href='/internal/home'>
-                <FontAwesomeIcon icon={faHome} />
-                <span>&nbsp;&nbsp;Início</span>
-            </Nav.Link>
+			<LinkContainer to='/internal/home'>
+				<Nav.Link className='dark'>
+					<FontAwesomeIcon icon={faHome} />
+					<span>&nbsp;&nbsp;Início</span>
+				</Nav.Link>
+			</LinkContainer>
         </Nav.Item>
         <Nav.Item>
-            <Nav.Link href='/internal/user'>
-                <FontAwesomeIcon icon={faUserFriends} />
-                <span>&nbsp;&nbsp;Usuários</span>
-            </Nav.Link>
+			<LinkContainer to='/internal/user'>
+				<Nav.Link>
+					<FontAwesomeIcon icon={faUserFriends} />
+					<span>&nbsp;&nbsp;Usuários</span>
+				</Nav.Link>
+			</LinkContainer>
         </Nav.Item>
         <Nav.Item>
-            <Nav.Link href='/internal/home'>
-                <FontAwesomeIcon icon={faBaby} />
-                <span>&nbsp;&nbsp;Crianças</span>
-            </Nav.Link>
+			<LinkContainer to='/internal/home'>
+				<Nav.Link>
+					<FontAwesomeIcon icon={faBaby} />
+					<span>&nbsp;&nbsp;Crianças</span>
+				</Nav.Link>
+			</LinkContainer>
         </Nav.Item>
     </Nav>
 )

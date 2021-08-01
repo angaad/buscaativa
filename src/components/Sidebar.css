@@ -1,0 +1,11 @@
+.sidebar {
+	height: calc(100vh - 3.5em);
+}
+
+.sidebar a {
+	color: rgba(187, 83, 22, .6)
+}
+
+.sidebar a:hover {
+	color: rgba(187, 83, 22, 1)
+}

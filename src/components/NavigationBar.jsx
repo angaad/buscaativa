@@ -8,23 +8,37 @@ import { Nav, Navbar } from 'react-bootstrap'
 import { LinkContainer } from "react-router-bootstrap"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 import { logoutRequest } from '../store/actions/appstate'
+import Logo from '../images/logo-angaad-250.png'
 
 const NavigationBar = props => (
     <Navbar
         sticky='top'
+		style={{padding: '0.5em'}}
         className='bg-primary'>
-        <LinkContainer to='/'>
+        <LinkContainer to={props.isAuthenticated ? '/internal/home' : '/'}>
             <Navbar.Brand className='font-weight-bold text-light'>
-                Busca Ativa
+				<img
+					className='img-responsive'
+					style={{height: '1.5em'}}
+					src={Logo}
+					alt='Logo' />
+				&nbsp;
+                <span>Busca Ativa</span>
             </Navbar.Brand>
         </LinkContainer>
         <Navbar.Collapse className='justify-content-end'>
             <Nav activeKey={window.location.pathname}>
                 {props.isAuthenticated ? (
                     <>
-                        <Nav.Item>
+                        <Nav.Item
+							className='text-light'
+							style={{alignSelf: 'center', marginRight: '1em'}}>
+							<FontAwesomeIcon icon={faUser} />
+							&nbsp;
                             <span>{props.user.name}</span>
                         </Nav.Item>
                         <LinkContainer to='/'>

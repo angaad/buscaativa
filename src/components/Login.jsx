@@ -6,9 +6,10 @@
 import React, { useState } from "react"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, Container } from "react-bootstrap"
 import { Redirect } from 'react-router'
 import shajs from 'sha.js'
+import Logo from '../images/logo-angaad-250.png'
 
 import './Login.css'
 
@@ -31,7 +32,10 @@ const Login = props => {
     }
 
     return (
-        <div  className="container Login">
+        <Container  className="Login">
+			<div style={{textAlign: 'center'}}>
+				<img src={Logo} alt='Logo' />
+			</div>
             <Form onSubmit={handleSubmit}>
                 <Form.Group size="lg" controlId="user">
                     <Form.Label>Usuário</Form.Label>
@@ -70,7 +74,7 @@ const Login = props => {
             {props.isAuthenticated ? (
                 <Redirect to="/internal/home" />
             ) : ( <span /> )}
-        </div>
+        </Container>
     )
 }
 
