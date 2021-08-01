@@ -16,24 +16,22 @@ import Routes from './Routes'
 const App = ({ isAuthenticated }) => (
     <div>
         <NavigationBar />
-        {isAuthenticated ? (
-            <Container fluid>
+		<Container fluid>
+        	{isAuthenticated ? (
                 <Row>
-                    <Col xs={2}>
+                    <Col xs={2} style={{paddingLeft: 0}}>
                         <SideBar />
                     </Col>
                     <Col xs={10}>
                         <Routes />
                     </Col>
                 </Row>
-            </Container>    
-        ) : (
-            <Container fluid>
+        	) : (
                 <Row>
                     <Routes />
                 </Row>
-            </Container>
-        )}
+        	)}
+		</Container>    
     </div>
 )
 
