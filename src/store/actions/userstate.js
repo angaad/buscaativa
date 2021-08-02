@@ -35,7 +35,7 @@ export const userAdd = user => (dispatch, getState) => {
         url: '/api/user',
         baseURL: uri,
         headers: { Authorization: `Bearer ${token}`, },
-		data: { user },
+		data: { document: user },
     }
 
 	axios(config)
@@ -53,7 +53,7 @@ export const userUpdate = user => (dispatch, getState) => {
         url: `/api/user/${user._id}`,
         baseURL: uri,
         headers: { Authorization: `Bearer ${token}`, },
-		data: { user },
+		data: { document: user },
     }
 
 	axios(config)

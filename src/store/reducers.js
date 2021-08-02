@@ -9,10 +9,18 @@ import thunk from 'redux-thunk'
 import multi from 'redux-multi'
 import appReducer from './reducers/appstate'
 import userReducer from './reducers/userstate'
+import raceReducer from './reducers/racestate'
+import healthReducer from './reducers/healthstate'
+import legalReducer from './reducers/legalstate'
+import kidsReducer from './reducers/kidsstate'
 
 const reducers = combineReducers({
     appReducer,
-    userReducer
+    userReducer,
+	raceReducer,
+	healthReducer,
+	legalReducer,
+	kidsReducer,
 })
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ &&

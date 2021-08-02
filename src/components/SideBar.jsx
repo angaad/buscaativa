@@ -7,7 +7,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUserFriends, faBaby }
+import { faHome, faUserFriends, faBaby, faStethoscope, faBalanceScale,
+	faSnowman, faSearch }
     from '@fortawesome/free-solid-svg-icons'
 import { Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -32,11 +33,43 @@ const SideBar = props => (
 				</Nav.Link>
 			</LinkContainer>
         </Nav.Item>
+		<Nav.Item>
+			<LinkContainer to='/internal/races'>
+				<Nav.Link>
+					<FontAwesomeIcon icon={faSnowman} />
+					<span>&nbsp;&nbsp;Raças</span>
+				</Nav.Link>
+			</LinkContainer>
+		</Nav.Item>
+		<Nav.Item>
+			<LinkContainer to='/internal/legalstatus'>
+				<Nav.Link>
+					<FontAwesomeIcon icon={faBalanceScale} />
+					<span>&nbsp;&nbsp;Destituição</span>
+				</Nav.Link>
+			</LinkContainer>
+		</Nav.Item>
+		<Nav.Item>
+			<LinkContainer to='/internal/health'>
+				<Nav.Link>
+					<FontAwesomeIcon icon={faStethoscope} />
+					<span>&nbsp;&nbsp;Saúde</span>
+				</Nav.Link>
+			</LinkContainer>
+		</Nav.Item>
         <Nav.Item>
-			<LinkContainer to='/internal/home'>
+			<LinkContainer to='/internal/kids'>
 				<Nav.Link>
 					<FontAwesomeIcon icon={faBaby} />
-					<span>&nbsp;&nbsp;Crianças</span>
+					<span>&nbsp;&nbsp;Cadastro de Crianças</span>
+				</Nav.Link>
+			</LinkContainer>
+        </Nav.Item>
+        <Nav.Item>
+			<LinkContainer to='/internal/searchforkids'>
+				<Nav.Link>
+					<FontAwesomeIcon icon={faSearch} />
+					<span>&nbsp;&nbsp;Consulta de Crianças</span>
 				</Nav.Link>
 			</LinkContainer>
         </Nav.Item>
