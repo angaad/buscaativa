@@ -11,6 +11,10 @@ import Login from './components/Login'
 import HomeInternal from './components/HomeApp'
 import PrivateRoute from './components/PrivateRoute'
 import UserPage from './components/UserPage'
+import Kids from './components/Kids'
+import RacePage from './components/RacePage'
+import LegalStatusPage from './components/LegalStatusPage'
+import HealthPage from './components/HealthPage'
 
 const Routes = _ => (
     <Switch>
@@ -26,6 +30,18 @@ const Routes = _ => (
         <PrivateRoute exact path='/internal/user'>
             <UserPage />
         </PrivateRoute>
+		<PrivateRoute exact path='/internal/races'>
+			<RacePage />
+		</PrivateRoute>
+		<PrivateRoute exact path='/internal/legalstatus'>
+			<LegalStatusPage />
+		</PrivateRoute>
+		<PrivateRoute exact path='/internal/health'>
+			<HealthPage />
+		</PrivateRoute>
+		<PrivateRoute exact path='/internal/kids'>
+			<Kids />
+		</PrivateRoute>
 
         <Route>
             <NotFound />
