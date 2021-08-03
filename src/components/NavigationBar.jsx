@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 import { logoutRequest } from '../store/actions/appstate'
-import Logo from '../images/logo-angaad-250.png'
+import Logo from '../images/logo-angaad-branca.png'
 
 const NavigationBar = props => (
     <Navbar

@@ -125,7 +125,7 @@ const UserForm = props => {
 						<Form.Group as={Col} controlId='ativo'>
 							<Form.Label>Usuário ativo</Form.Label>
 							<Form.Check
-								type='checkbox'
+								type='switch'
 								label='&nbsp;&nbsp;Habilitado?'
 								disabled={props.action === 'R' || props.action === 'D'}
 								checked={ativo}
