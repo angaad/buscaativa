@@ -27,7 +27,7 @@ const NavigationBar = props => (
 					src={Logo}
 					alt='Logo' />
 				&nbsp;
-                <span>Busca Ativa</span>
+                <span> Busca Ativa</span>
             </Navbar.Brand>
         </LinkContainer>
         <Navbar.Collapse className='justify-content-end'>
