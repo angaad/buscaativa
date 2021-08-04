@@ -5,16 +5,17 @@
 
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle, faTrashAlt, faImage } from '@fortawesome/free-solid-svg-icons'
-import { Modal, Tabs, Tab, Form, Row, Col, Table, Button } from 'react-bootstrap'
+import { faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { Modal, Tabs, Tab, Form, Row, Col, Table, Button, FormCheck, } from 'react-bootstrap'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import FileBase64 from 'react-file-base64'
 
 import { CloseButton, DeleteButton, SaveButton, If } from '../templates/Reusables'
 import { healthSearch } from '../store/actions/healthstate'
 import { legalSearch } from '../store/actions/legalstate'
 import { raceSearch } from '../store/actions/racestate'
+import UploadImage from '../templates/UploadImage'
+import UploadVideo from '../templates/UploadVideo'
 
 class KidsForm extends Component {
 	constructor (props) {
@@ -34,7 +35,10 @@ class KidsForm extends Component {
 			health: [],
 			brothers: '',
 			photo: '',
-			video: '',
+			video: {
+				base64: '',
+				type: '',
+			},
 		}
 
 		this.validForm = this.validForm.bind(this)
@@ -79,7 +83,7 @@ class KidsForm extends Component {
 
 	buildRaceField () {
 		const racesOptions = this.props.races.map(race => (
-			<option value={race._id}>{race.description}</option>
+			<option key={race._id} value={race._id}>{race.description}</option>
 		))
 
 		return (
@@ -101,7 +105,7 @@ class KidsForm extends Component {
 
 	buildLegalField () {
 		const legalOptions = this.props.legals.map(legal => (
-			<option value={legal._id}>{legal.description}</option>
+			<option key={legal._id} value={legal._id}>{legal.description}</option>
 		))
 
 		return (
@@ -184,18 +188,6 @@ class KidsForm extends Component {
 					{this.buildLegalField()}
 				</Row>
 				<Row>
-					<Form.Group as={Col} controlId='city'>
-						<Form.Label>Cidade</Form.Label>
-						<Form.Control
-							type='text'
-							placeholder='Digite a cidade'
-							value={this.state.city}
-							onChange={e => this.setState({
-								...this.state,
-								city: e.target.value
-							})}
-						/>
-					</Form.Group>
 					<Form.Group as={Col} controlId='state'>
 						<Form.Label>Estado</Form.Label>
 						<Form.Control
@@ -205,6 +197,18 @@ class KidsForm extends Component {
 							onChange={e => this.setState({
 								...this.state,
 								state: e.target.value
+							})}
+						/>
+					</Form.Group>
+					<Form.Group as={Col} controlId='city'>
+						<Form.Label>Cidade</Form.Label>
+						<Form.Control
+							type='text'
+							placeholder='Digite a cidade'
+							value={this.state.city}
+							onChange={e => this.setState({
+								...this.state,
+								city: e.target.value
 							})}
 						/>
 					</Form.Group>
@@ -235,15 +239,18 @@ class KidsForm extends Component {
 
 	renderTabHealth () {
 		const renderHealthRows = _ => {
-			const healths = this.state.health || []
+			const healths = this.props.healths || []
 
-			healths.map(health => (
+			return healths.map(health => (
 				<tr key={health._id} className="d-flex">
-					<td className='col-11'>{health.description}</td>
 					<td className='col-1'>
-						<Button onClick={_ => {}}>
-							<FontAwesomeIcon icon={faTrashAlt} />
-						</Button>
+						<Form.Group controlId={health._id}>
+							<FormCheck />
+						</Form.Group>
+					</td>
+					<td className='col-4'>{health.description}</td>
+					<td className='col-7' style={{fontSize: 'small'}}>
+						{health.gideline}
 					</td>
 				</tr>
 			))
@@ -254,12 +261,9 @@ class KidsForm extends Component {
 				<Table>
 					<thead>
 						<tr className="d-flex">
-							<th className='col-11'>Saúde</th>
-							<th className='col-1'>
-								<Button onClick={_ => {}}>
-									<FontAwesomeIcon icon={faPlusCircle} />
-								</Button>
-							</th>
+							<th className='col-1'>&nbsp;</th>
+							<th className='col-4'>Saúde</th>
+							<th className='col-7'>Instrução</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -311,8 +315,7 @@ class KidsForm extends Component {
 		return (
 			<Tab eventKey='photo' title='Foto'>
 				<Form.Group controlId="formFile">
-					<FileBase64
-        				multiple={false}
+					<UploadImage
 						onDone={ file => 
 							this.setState({
 								...this.state,
@@ -335,18 +338,27 @@ class KidsForm extends Component {
 		return (
 			<Tab eventKey='video' title='Video'>
 				<Form.Group controlId="formFile">
-					<FileBase64
-        				multiple={false}
+					<UploadVideo
 						onDone={ file => 
 							this.setState({
 								...this.state,
-								video: file.base64
+								video: {
+									base64: file.base64,
+									type: file.type,
+								}
 							})
 						}
 					/>
-					<If test={this.state.video !== ''}>
-						<video autoplay controls source={this.state.video}>
-							The “video” tag is not supported by your browser.
+					<If test={this.state.video.base64 !== ''}>
+						<video
+							width='100%'
+							height='500'
+							autoPlay
+							controls>
+  							<source
+								src={this.state.video.base64}
+								type={this.state.video.type} />
+  							Your browser does not support HTML video.
 						</video>
 					</If>
 				</Form.Group>
@@ -357,7 +369,8 @@ class KidsForm extends Component {
 	render () {
 		return (
 			<Modal
-				{...this.props}
+				show={this.props.show}
+				onHide={this.props.onHide}
 				size="lg"
 				centered>
 				<Modal.Header closeButton>
