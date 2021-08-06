@@ -74,7 +74,7 @@ class Kids extends Component {
 	render () {
 		return (
 			<Container>
-				<h1>Crianças</h1>
+				<h1>Crianças / Adolecentes</h1>
 				<Table striped hover>
 					<thead className="thead-dark">
 						<tr className="d-flex">

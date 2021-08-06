@@ -47,6 +47,7 @@ class KidsForm extends Component {
 		this.renderTabBasic = this.renderTabBasic.bind(this)
 		this.buildRaceField = this.buildRaceField.bind(this)
 		this.buildLegalField = this.buildLegalField.bind(this)
+		this.buildUfField = this.buildUfField.bind(this)
 		this.renderTabHealth = this.renderTabHealth.bind(this)
 		this.renderTabBrothers = this.renderTabBrothers.bind(this)
 		this.renderTabPhoto = this.renderTabPhoto.bind(this)
@@ -125,6 +126,27 @@ class KidsForm extends Component {
 		)
 	}
 
+	buildUfField () {
+		const ufOptions = this.props.ufs.map(uf => (
+			<option key={uf.id} value={uf.sigla}>{uf.sigla}</option>
+		))
+		return (
+			<Form.Group as={Col} controlId='state'>
+				<Form.Label>Estado</Form.Label>
+				<Form.Control
+					as='select'
+					defaultValue={this.state.state}
+					onChange={e => this.setState({
+						...this.state,
+						state: e.target.value
+					})}>
+					<option>Selectione o estado</option>
+					{ufOptions}
+				</Form.Control>
+			</Form.Group>
+		)
+	}
+
 	renderTabBasic () {
 		return (
 			<Tab eventKey='basic' title='Dados Básicos'>
@@ -188,18 +210,7 @@ class KidsForm extends Component {
 					{this.buildLegalField()}
 				</Row>
 				<Row>
-					<Form.Group as={Col} controlId='state'>
-						<Form.Label>Estado</Form.Label>
-						<Form.Control
-							type='text'
-							placeholder='Digite o estado'
-							value={this.state.state}
-							onChange={e => this.setState({
-								...this.state,
-								state: e.target.value
-							})}
-						/>
-					</Form.Group>
+					{this.buildUfField()}
 					<Form.Group as={Col} controlId='city'>
 						<Form.Label>Cidade</Form.Label>
 						<Form.Control
@@ -375,7 +386,7 @@ class KidsForm extends Component {
 				centered>
 				<Modal.Header closeButton>
 					<Modal.Title id="contained-modal-title-vcenter">
-						Criança
+						Criança / Adolecente
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
@@ -415,6 +426,7 @@ const mapStateToProps = state => ({
 	healths: state.healthReducer.healths,
 	legals: state.legalReducer.legals,
 	races: state.raceReducer.races,
+	ufs: state.ibgeReducer.ufs,
 })
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
