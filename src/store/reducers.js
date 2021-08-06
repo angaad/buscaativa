@@ -13,6 +13,7 @@ import raceReducer from './reducers/racestate'
 import healthReducer from './reducers/healthstate'
 import legalReducer from './reducers/legalstate'
 import kidsReducer from './reducers/kidsstate'
+import ibgeReducer from './reducers/ibgestate'
 
 const reducers = combineReducers({
     appReducer,
@@ -21,6 +22,7 @@ const reducers = combineReducers({
 	healthReducer,
 	legalReducer,
 	kidsReducer,
+    ibgeReducer,
 })
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ &&
