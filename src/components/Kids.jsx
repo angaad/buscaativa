@@ -8,7 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faPencilAlt, faTrashAlt, faPlusCircle }
 	from '@fortawesome/free-solid-svg-icons'
 import { Button, Container, Table } from 'react-bootstrap'
+
 import KidsForm from './KidsForm'
+import { kidsSearch } from '../store/actions/kidsstate'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 const defaultKid = {
 
@@ -29,7 +33,7 @@ class Kids extends Component {
 	}
 
 	componentDidMount() {
-		//TODO: search
+		this.props.kidsSearch()
 	}
 
 	openForm (action, kid = defaultKid) {
@@ -102,4 +106,13 @@ class Kids extends Component {
 	}
 }
 
-export default Kids
+// MARK: - Redux
+const actions = {
+	kidsSearch
+}
+const mapStateToProps = state => ({
+	kids: state.kidsReducer.kids,
+})
+const mapDispatchToProps = dispach => bindActionCreators(actions, dispach)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Kids)

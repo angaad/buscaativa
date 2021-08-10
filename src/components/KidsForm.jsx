@@ -14,6 +14,7 @@ import { CloseButton, DeleteButton, SaveButton, If } from '../templates/Reusable
 import { healthSearch } from '../store/actions/healthstate'
 import { legalSearch } from '../store/actions/legalstate'
 import { raceSearch } from '../store/actions/racestate'
+import { kidAdd, kidUpdate, kidDelete } from '../store/actions/kidsstate'
 import UploadImage from '../templates/UploadImage'
 import UploadVideo from '../templates/UploadVideo'
 
@@ -421,6 +422,9 @@ const actions = {
 	healthSearch,
 	legalSearch,
 	raceSearch,
+	kidAdd,
+	kidDelete,
+	kidUpdate
 }
 const mapStateToProps = state => ({
 	healths: state.healthReducer.healths,
