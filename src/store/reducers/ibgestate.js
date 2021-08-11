@@ -3,10 +3,11 @@
  * @since 2021-08-06 07:02:04
  */
 
-import { IBGE_UF_SEARCHED } from '../constants'
+import { IBGE_UF_SEARCHED, IBGE_CITIES_SEARCHED } from '../constants'
 
 const ibgeDefault = {
-    ufs: []
+    ufs: [],
+    cities: [],
 }
 
 const ibgeReducer = (state = ibgeDefault, action) => {
@@ -17,6 +18,11 @@ const ibgeReducer = (state = ibgeDefault, action) => {
             return {
                 ...state,
                 ufs: payload
+            }
+        case IBGE_CITIES_SEARCHED:
+            return {
+                ...state,
+                cities: payload,
             }
         default:
             return state

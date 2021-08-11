@@ -4,9 +4,10 @@
  */
 
 import axios from 'axios'
-import { IBGE_UF_SEARCHED } from '../constants'
+import { IBGE_UF_SEARCHED, IBGE_CITIES_SEARCHED } from '../constants'
 
 const UF_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados'
+const CITY_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/%uf%/municipios'
 
 export const ibgeUfSearch = _ => dispatch => {
     axios.get(UF_URL)
@@ -22,4 +23,19 @@ export const ibgeUfSearch = _ => dispatch => {
         dispatch({type: IBGE_UF_SEARCHED, payload: resp.data})
     })
     .catch(console.log)
+}
+
+export const ibgeCitySearch = uf => dispatch => {
+    axios.get(CITY_URL.replace('%uf%', uf))
+    .then(resp => {
+        const cities = resp.data
+
+        cities.sort((a, b) => {
+            if (a.nome < b.nome) return -1
+            if (a.nome > b.nome) return 1
+            return 0
+        })
+
+        dispatch({type: IBGE_CITIES_SEARCHED, payload: cities})
+    })
 }
