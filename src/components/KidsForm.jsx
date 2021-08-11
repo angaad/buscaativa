@@ -17,28 +17,31 @@ import { raceSearch } from '../store/actions/racestate'
 import { kidAdd, kidUpdate, kidDelete } from '../store/actions/kidsstate'
 import UploadImage from '../templates/UploadImage'
 import UploadVideo from '../templates/UploadVideo'
+import { ibgeCitySearch } from '../store/actions/ibgestate'
 
 class KidsForm extends Component {
 	constructor (props) {
 		super(props)
 
+		const { kid } = props
+
 		this.state = {
-			name: '',
-			casenumber: '',
-			birthday: '',
-			gender: '',
-			race: '',
-			destitution: '',
-			city: '',
-			state: '',
-			contact: '',
-			bio: '',
-			health: [],
-			brothers: '',
-			photo: '',
+			name: kid.name,
+			casenumber: kid.casenumber,
+			birthday: kid.birthday.substr(0, 10),
+			gender: kid.gender,
+			race: kid.race,
+			destitution: kid.destitution,
+			city: kid.city,
+			state: kid.state,
+			contact: kid.contact,
+			bio: kid.bio,
+			health: kid.health,
+			brothers: kid.brothers,
+			photo: kid.photo,
 			video: {
-				base64: '',
-				type: '',
+				base64: kid.video.base64,
+				type: kid.video.type,
 			},
 		}
 
@@ -49,6 +52,7 @@ class KidsForm extends Component {
 		this.buildRaceField = this.buildRaceField.bind(this)
 		this.buildLegalField = this.buildLegalField.bind(this)
 		this.buildUfField = this.buildUfField.bind(this)
+		this.buildCityField = this.buildCityField.bind(this)
 		this.renderTabHealth = this.renderTabHealth.bind(this)
 		this.renderTabBrothers = this.renderTabBrothers.bind(this)
 		this.renderTabPhoto = this.renderTabPhoto.bind(this)
@@ -66,6 +70,23 @@ class KidsForm extends Component {
 
 	handleWithSaveButton () {
 		const kid = {
+			name: this.state.name,
+			casenumber: this.state.casenumber,
+			bio: this.state.bio,
+			birthday: this.state.birthday,
+			photo: this.state.photo,
+			video: {
+				base64: this.state.video.base64,
+				type: this.state.video.type,
+			},
+			gender: this.state.gender,
+			race: this.state.race,
+			health: [],
+			brothers: [],
+			destitution: this.state.destitution,
+			city: this.state.city,
+			state: this.state.state,
+			contact: this.props.user._id,
 		}
 
 		if (this.props.action === 'U') {
@@ -131,18 +152,47 @@ class KidsForm extends Component {
 		const ufOptions = this.props.ufs.map(uf => (
 			<option key={uf.id} value={uf.sigla}>{uf.sigla}</option>
 		))
+
 		return (
 			<Form.Group as={Col} controlId='state'>
 				<Form.Label>Estado</Form.Label>
 				<Form.Control
 					as='select'
 					defaultValue={this.state.state}
-					onChange={e => this.setState({
-						...this.state,
-						state: e.target.value
-					})}>
+					onChange={e => {
+						this.props.ibgeCitySearch(e.target.value)
+
+						this.setState({
+							...this.state,
+							state: e.target.value
+						})
+					}}>
 					<option>Selectione o estado</option>
 					{ufOptions}
+				</Form.Control>
+			</Form.Group>
+		)
+	}
+
+	buildCityField () {
+		const cityOptions = this.props.cities.map(city => (
+			<option key={city.id} value={city.nome}>{city.nome}</option>
+		))
+
+		return (
+			<Form.Group as={Col} controlId='city'>
+				<Form.Label>Cidade</Form.Label>
+				<Form.Control
+					as='select'
+					defaultValue={this.state.city}
+					onChange={e => {
+						this.setState({
+							...this.state,
+							city: e.target.value
+						})
+					}}>
+					<option>Selectione a cidade</option>
+					{cityOptions}
 				</Form.Control>
 			</Form.Group>
 		)
@@ -212,18 +262,7 @@ class KidsForm extends Component {
 				</Row>
 				<Row>
 					{this.buildUfField()}
-					<Form.Group as={Col} controlId='city'>
-						<Form.Label>Cidade</Form.Label>
-						<Form.Control
-							type='text'
-							placeholder='Digite a cidade'
-							value={this.state.city}
-							onChange={e => this.setState({
-								...this.state,
-								city: e.target.value
-							})}
-						/>
-					</Form.Group>
+					{this.buildCityField()}
 				</Row>
 			</Tab>
 		)
@@ -424,13 +463,16 @@ const actions = {
 	raceSearch,
 	kidAdd,
 	kidDelete,
-	kidUpdate
+	kidUpdate,
+	ibgeCitySearch,
 }
 const mapStateToProps = state => ({
 	healths: state.healthReducer.healths,
 	legals: state.legalReducer.legals,
 	races: state.raceReducer.races,
 	ufs: state.ibgeReducer.ufs,
+	cities: state.ibgeReducer.cities,
+	user: state.appReducer.user,
 })
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 

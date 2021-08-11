@@ -32,7 +32,7 @@ export const kidAdd = kid => (dispatch, getState) => {
 		url: '/api/kids',
 		baseURL: uri,
 		headers: { Authorization: `Bearer ${token}`, },
-		data: { kid },
+		data: { document: kid },
 	}
 
 	axios(config)
@@ -48,7 +48,7 @@ export const kidUpdate = kid => (dispatch, getState) => {
 		url: `/api/kids/${kid._id}`,
 		baseURL: uri,
 		headers: { Authorization: `Bearer ${token}`, },
-		data: { kid },
+		data: { document: kid },
 	}
 
 	axios(config)

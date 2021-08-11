@@ -15,7 +15,23 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 const defaultKid = {
-
+	name: '',
+	casenumber: '',
+	birthday: '',
+	gender: '',
+	race: '',
+	destitution: '',
+	city: '',
+	state: '',
+	contact: '',
+	bio: '',
+	health: [],
+	brothers: [],
+	photo: '',
+	video: {
+		base64: '',
+		type: '',
+	},
 }
 
 class Kids extends Component {
