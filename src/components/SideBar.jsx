@@ -61,7 +61,7 @@ const SideBar = props => (
 			<LinkContainer to='/internal/kids'>
 				<Nav.Link>
 					<FontAwesomeIcon icon={faBaby} />
-					<span>&nbsp;&nbsp;Cadastro de Crianças / Adolecentes</span>
+					<span>&nbsp;&nbsp;Cadastro de Crianças / Adolescentes</span>
 				</Nav.Link>
 			</LinkContainer>
         </Nav.Item>
@@ -69,7 +69,7 @@ const SideBar = props => (
 			<LinkContainer to='/internal/searchforkids'>
 				<Nav.Link>
 					<FontAwesomeIcon icon={faSearch} />
-					<span>&nbsp;&nbsp;Consulta de Crianças / Adolecentes</span>
+					<span>&nbsp;&nbsp;Consulta de Crianças / Adolescentes</span>
 				</Nav.Link>
 			</LinkContainer>
         </Nav.Item>

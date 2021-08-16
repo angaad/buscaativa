@@ -4,23 +4,37 @@
  */
 
 import axios from 'axios'
-import { KIDS_SEARCHED } from '../constants'
+import { KIDS_SEARCHED, KID_SEARCHED, KID_CLEARED } from '../constants'
 
 const port = process.env.REACT_APP_RESTFUL_PORT ? `:${process.env.REACT_APP_RESTFUL_PORT}` : ''
 const uri = `${process.env.REACT_APP_RESTFUL_URL}${port}`
 
-export const kidsSearch = _ => (dispatch, getState) => {
+export const kidsSearch = (fields, id) => (dispatch, getState) => {
 	const token = getState().appReducer.token
+	const url = [
+		'/api/kids',
+	]
+
+	if (id) {
+		url.push(`/${id}`)
+	}
+
+	if (fields) {
+		url.push(`?fields=${fields}`)
+	}
 
 	const config = {
 		method: 'get',
-		url: '/api/kids',
+		url: url.join(''),
 		baseURL: uri,
 		headers: { Authorization: `Bearer ${token}`, },
 	}
 
 	axios(config)
-	.then(resp => dispatch({type: KIDS_SEARCHED, payload: resp.data}))
+	.then(resp => {
+		const type = id ? KID_SEARCHED : KIDS_SEARCHED
+		dispatch({type, payload: resp.data})
+	})
 	.catch(console.log)
 }
 
@@ -70,3 +84,5 @@ export const kidDelete = id => (dispatch, getState) => {
 	.then(_ => dispatch(kidsSearch()))
 	.catch(console.log)
 }
+
+export const kidClear = _ => ({type: KID_CLEARED})

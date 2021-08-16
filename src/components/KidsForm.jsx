@@ -14,7 +14,7 @@ import { CloseButton, DeleteButton, SaveButton, If } from '../templates/Reusable
 import { healthSearch } from '../store/actions/healthstate'
 import { legalSearch } from '../store/actions/legalstate'
 import { raceSearch } from '../store/actions/racestate'
-import { kidAdd, kidUpdate, kidDelete } from '../store/actions/kidsstate'
+import { kidsSearch, kidAdd, kidUpdate, kidDelete, kidClear } from '../store/actions/kidsstate'
 import UploadImage from '../templates/UploadImage'
 import UploadVideo from '../templates/UploadVideo'
 import { ibgeCitySearch } from '../store/actions/ibgestate'
@@ -23,25 +23,24 @@ class KidsForm extends Component {
 	constructor (props) {
 		super(props)
 
-		const { kid } = props
-
 		this.state = {
-			name: kid.name,
-			casenumber: kid.casenumber,
-			birthday: kid.birthday.substr(0, 10),
-			gender: kid.gender,
-			race: kid.race,
-			destitution: kid.destitution,
-			city: kid.city,
-			state: kid.state,
-			contact: kid.contact,
-			bio: kid.bio,
-			health: kid.health,
-			brothers: kid.brothers,
-			photo: kid.photo,
+			refresh: true,
+			name: '',
+			casenumber: '',
+			birthday: '',
+			gender: '',
+			race: '',
+			destitution: '',
+			city: '',
+			state: '',
+			contact: '',
+			bio: '',
+			health: '',
+			brothers: '',
+			photo: '',
 			video: {
-				base64: kid.video.base64,
-				type: kid.video.type,
+				base64: '',
+				type: '',
 			},
 		}
 
@@ -62,6 +61,14 @@ class KidsForm extends Component {
 		this.props.healthSearch()
 		this.props.legalSearch()
 		this.props.raceSearch()
+
+		if (this.props.kidToShow._id) {
+			this.props.kidsSearch(null, this.props.kidToShow._id)
+		}
+	}
+
+	componentWillUnmount() {
+		this.props.kidClear()
 	}
 
 	validForm () {
@@ -106,7 +113,12 @@ class KidsForm extends Component {
 
 	buildRaceField () {
 		const racesOptions = this.props.races.map(race => (
-			<option key={race._id} value={race._id}>{race.description}</option>
+			<option 
+				key={race._id} 
+				selected={race._id === this.state.race}
+				value={race._id}>
+				{race.description}
+			</option>
 		))
 
 		return (
@@ -128,7 +140,12 @@ class KidsForm extends Component {
 
 	buildLegalField () {
 		const legalOptions = this.props.legals.map(legal => (
-			<option key={legal._id} value={legal._id}>{legal.description}</option>
+			<option
+				key={legal._id}
+				selected={legal._id === this.state.destitution}
+				value={legal._id}>
+				{legal.description}
+			</option>
 		))
 
 		return (
@@ -150,7 +167,12 @@ class KidsForm extends Component {
 
 	buildUfField () {
 		const ufOptions = this.props.ufs.map(uf => (
-			<option key={uf.id} value={uf.sigla}>{uf.sigla}</option>
+			<option
+				key={uf.id}
+				selected={uf.sigla === this.state.state}
+				value={uf.sigla}>
+				{uf.sigla}
+			</option>
 		))
 
 		return (
@@ -176,7 +198,12 @@ class KidsForm extends Component {
 
 	buildCityField () {
 		const cityOptions = this.props.cities.map(city => (
-			<option key={city.id} value={city.nome}>{city.nome}</option>
+			<option
+				key={city.id}
+				selected={city.nome === this.state.city}
+				value={city.nome}>
+				{city.nome}
+			</option>
 		))
 
 		return (
@@ -418,6 +445,31 @@ class KidsForm extends Component {
 	}
 
 	render () {
+		if (this.props.kid !== null && this.state.refresh) {
+			this.setState({
+				refresh: false,
+				name: this.props.kid.name,
+				casenumber: this.props.kid.casenumber,
+				birthday: this.props.kid.birthday.substr(0, 10),
+				gender: this.props.kid.gender,
+				race: this.props.kid.race,
+				destitution: this.props.kid.destitution,
+				city: this.props.kid.city,
+				state: this.props.kid.state,
+				contact: this.props.kid.contact,
+				bio: this.props.kid.bio,
+				health: this.props.kid.health,
+				brothers: this.props.kid.brothers,
+				photo: this.props.kid.photo,
+				video: {
+					base64: this.props.kid.video.base64,
+					type: this.props.kid.video.type,
+				},
+			})
+
+			this.props.ibgeCitySearch(this.props.kid.state)
+		}
+
 		return (
 			<Modal
 				show={this.props.show}
@@ -426,7 +478,7 @@ class KidsForm extends Component {
 				centered>
 				<Modal.Header closeButton>
 					<Modal.Title id="contained-modal-title-vcenter">
-						Criança / Adolecente
+						Criança / Adolescente
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
@@ -465,8 +517,11 @@ const actions = {
 	kidDelete,
 	kidUpdate,
 	ibgeCitySearch,
+	kidsSearch,
+	kidClear,
 }
 const mapStateToProps = state => ({
+	kid: state.kidsReducer.kid,
 	healths: state.healthReducer.healths,
 	legals: state.legalReducer.legals,
 	races: state.raceReducer.races,

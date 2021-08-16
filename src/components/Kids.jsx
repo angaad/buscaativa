@@ -49,7 +49,7 @@ class Kids extends Component {
 	}
 
 	componentDidMount() {
-		this.props.kidsSearch()
+		this.props.kidsSearch("name state city")
 	}
 
 	openForm (action, kid = defaultKid) {
@@ -73,7 +73,9 @@ class Kids extends Component {
 
 		return kids.map(kid => (
 			<tr key={kid._id} className="d-flex">
-				<td className='col-10'>{kid.name}</td>
+				<td className='col-7'>{kid.name}</td>
+				<td className='col-1'>{kid.state}</td>
+				<td className='col-2'>{kid.city}</td>
 				<td className="col-2" style={{textAlign: 'right'}}>
 					<Button onClick={_ => this.openForm('R', kid)}>
 						<FontAwesomeIcon icon={faEye} />
@@ -94,11 +96,13 @@ class Kids extends Component {
 	render () {
 		return (
 			<Container>
-				<h1>Crianças / Adolecentes</h1>
+				<h1>Crianças / Adolescentes</h1>
 				<Table striped hover>
 					<thead className="thead-dark">
 						<tr className="d-flex">
-							<th className="col-10">Nome</th>
+							<th className="col-7">Nome</th>
+							<th className="col-1">UF</th>
+							<th className="col-2">Cidade</th>
 							<th className="col-2" style={{textAlign: 'right'}}>
 								<Button onClick={_ => this.openForm('C')}>
 									<FontAwesomeIcon icon={faPlusCircle} />
@@ -114,7 +118,7 @@ class Kids extends Component {
 					<KidsForm
 						show
 						onHide={this.hideForm}
-						kid={this.state.kid}
+						kidToShow={this.state.kid}
 						action={this.state.action} />
 				) : (<></>)}
 			</Container>
