@@ -1,41 +1,41 @@
 /**
  * @author Frederico Ferracini Duarte
- * @since 2021-08-02 07:03:04
+ * @since 2021-08-01 22:42:12
  */
 
 import React, { useState } from 'react'
 import { Form, Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { CloseButton, DeleteButton, SaveButton } from '../templates/Reusables'
-import { healthAdd, healthUpdate, healthDelete } from '../store/actions/healthstate'
+import { CloseButton, DeleteButton, SaveButton } from '../../templates/Reusables'
+import { raceAdd, raceUpdate, raceDelete } from '../../store/actions/racestate'
 
-const HealthForm = props => {
-	const [description, setDescription] = useState(props.health.description)
-	const [gideline, setGideline] = useState(props.health.gideline)
+const RaceForm = props => {
+	const [description, setDescription] = useState(props.race.description)
+	const [gideline, setGideline] = useState(props.race.gideline)
 
 	const validForm = _ => {
 		return true
 	}
 
 	const handleWithSaveButton = _ => {
-		const health = {
+		const race = {
 			description: description,
 			gideline: gideline,
 		}
 
 		if (props.action === 'U') {
-			health._id = props.health._id
-			props.healthUpdate(health)
+			race._id = props.race._id
+			props.raceUpdate(race)
 		} else {
-			props.healthAdd(health)
+			props.raceAdd(race)
 		}
 
 		props.onHide()
 	}
 
 	const handleWithDeleteButton = _ => {
-		props.healthDelete(props.health._id)
+		props.raceDelete(props.race._id)
 		props.onHide()
 	}
 
@@ -46,7 +46,7 @@ const HealthForm = props => {
 			centered>
 			<Modal.Header closeButton>
 				<Modal.Title id="contained-modal-title-vcenter">
-					Saúde
+					Raça
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
@@ -88,11 +88,11 @@ const HealthForm = props => {
 
 // MARK: - Redux
 const actions = {
-	healthAdd,
-	healthUpdate,
-	healthDelete,
+	raceAdd,
+	raceUpdate,
+	raceDelete,
 }
 const mapStateToProps = state => ({})
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(HealthForm)
+export default connect(mapStateToProps, mapDispatchToProps)(RaceForm)

@@ -42,6 +42,7 @@ const UploadVideo = props => {
 				<FontAwesomeIcon icon={faVideo} size='2x' />
 			</Button>
 			<FormFile
+				name={props.name}
 				ref={hiddenFileInput}
 				hidden={true}
 				onChange={handleChange}

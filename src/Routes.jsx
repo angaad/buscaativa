@@ -10,11 +10,11 @@ import Home from './components/Home'
 import Login from './components/Login'
 import HomeInternal from './components/HomeApp'
 import PrivateRoute from './components/PrivateRoute'
-import UserPage from './components/UserPage'
-import Kids from './components/Kids'
-import RacePage from './components/RacePage'
-import LegalStatusPage from './components/LegalStatusPage'
-import HealthPage from './components/HealthPage'
+import UserPage from './components/User/UserPage'
+import Kids from './components/Kid/Kids'
+import RacePage from './components/Race/RacePage'
+import LegalStatusPage from './components/LegalStatus/LegalStatusPage'
+import HealthPage from './components/Health/HealthPage'
 
 const Routes = _ => (
     <Switch>

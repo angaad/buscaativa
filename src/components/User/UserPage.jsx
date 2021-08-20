@@ -12,7 +12,7 @@ import { bindActionCreators } from 'redux'
 import { faEye, faPencilAlt, faTrashAlt, faPlusCircle }
 	from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { userSearch } from '../store/actions/userstate'
+import { userSearch } from '../../store/actions/userstate'
 import UserForm from './UserForm'
 
 const defaultUser = {

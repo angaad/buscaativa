@@ -7,8 +7,8 @@ import React, { useState } from 'react'
 import { Form, Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { CloseButton, DeleteButton, SaveButton } from '../templates/Reusables'
-import { legalAdd, legalUpdate, legalDelete } from '../store/actions/legalstate'
+import { CloseButton, DeleteButton, SaveButton } from '../../templates/Reusables'
+import { legalAdd, legalUpdate, legalDelete } from '../../store/actions/legalstate'
 
 const LegalStatusForm = props => {
 	const [description, setDescription] = useState(props.legal.description)

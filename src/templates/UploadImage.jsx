@@ -42,6 +42,7 @@ const UploadImage = props => {
 				<FontAwesomeIcon icon={faImage} size='2x' />
 			</Button>
 			<FormFile
+				name={props.name}
 				ref={hiddenFileInput}
 				hidden={true}
 				onChange={handleChange}

@@ -11,7 +11,7 @@ import { Button, Container, Table } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { legalSearch } from '../store/actions/legalstate'
+import { legalSearch } from '../../store/actions/legalstate'
 import LegalStatusForm from './LegalStatusForm'
 
 const defaultLegal = {

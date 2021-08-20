@@ -7,8 +7,8 @@ import React, { useState } from 'react'
 import { Form, Modal, Row, Col } from 'react-bootstrap'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { CloseButton, SaveButton, DeleteButton } from '../templates/Reusables'
-import { userAdd, userUpdate, userDelete } from '../store/actions/userstate'
+import { CloseButton, SaveButton, DeleteButton } from '../../templates/Reusables'
+import { userAdd, userUpdate, userDelete } from '../../store/actions/userstate'
 
 const UserForm = props => {
 	const [cpf, setCpf] = useState(props.user.login)

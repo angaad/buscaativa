@@ -6,13 +6,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { ibgeUfSearch } from '../store/actions/ibgestate'
 
 class HomeInternal extends Component {
-    componentDidMount () {
-        this.props.ibgeUfSearch()
-    }
-
     render () {
         return (
             <h1>HOME!!!</h1>
@@ -22,7 +17,6 @@ class HomeInternal extends Component {
 
 // MARK: - Redux
 const actions = {
-    ibgeUfSearch
 }
 const mapStateToProps = state => ({
 })

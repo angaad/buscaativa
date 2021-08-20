@@ -11,7 +11,7 @@ import { Button, Container, Table } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { healthSearch } from '../store/actions/healthstate'
+import { healthSearch } from '../../store/actions/healthstate'
 import HealthForm from './HealthForm'
 
 const defaultHealth = {

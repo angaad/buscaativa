@@ -11,7 +11,7 @@ import { Button, Container, Table } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { raceSearch } from '../store/actions/racestate'
+import { raceSearch } from '../../store/actions/racestate'
 import RaceForm from './RaceForm'
 
 const defaultRace = {

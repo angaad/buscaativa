@@ -10,7 +10,7 @@ import { faEye, faPencilAlt, faTrashAlt, faPlusCircle }
 import { Button, Container, Table } from 'react-bootstrap'
 
 import KidsForm from './KidsForm'
-import { kidsSearch } from '../store/actions/kidsstate'
+import { kidsSearch } from '../../store/actions/kidsstate'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
