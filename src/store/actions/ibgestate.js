@@ -5,12 +5,10 @@
 
 import axios from 'axios'
 import { IBGE_UF_SEARCHED, IBGE_CITIES_SEARCHED } from '../constants'
-
-const UF_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados'
-const CITY_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/%uf%/municipios'
+import { URL_UF, URL_CITY } from './urls'
 
 export const ibgeUfSearch = _ => dispatch => {
-    axios.get(UF_URL)
+    axios.get(URL_UF)
     .then(resp => {
         const ufs = resp.data
 
@@ -26,7 +24,7 @@ export const ibgeUfSearch = _ => dispatch => {
 }
 
 export const ibgeCitySearch = uf => dispatch => {
-    axios.get(CITY_URL.replace('%uf%', uf))
+    axios.get(URL_CITY.replace('%uf%', uf))
     .then(resp => {
         const cities = resp.data
 

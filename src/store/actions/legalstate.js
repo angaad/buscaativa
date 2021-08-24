@@ -5,9 +5,7 @@
 
 import axios from 'axios'
 import { LEGAL_SEARCHED } from '../constants'
-
-const port = process.env.REACT_APP_RESTFUL_PORT ? `:${process.env.REACT_APP_RESTFUL_PORT}` : ''
-const uri = `${process.env.REACT_APP_RESTFUL_URL}${port}`
+import { URL_API } from './urls'
 
 export const legalSearch = _ => (dispatch, getState) => {
     const token = getState().appReducer.token
@@ -15,7 +13,7 @@ export const legalSearch = _ => (dispatch, getState) => {
     const config = {
         method: 'get',
         url: '/api/destitution',
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
     }
 
@@ -30,7 +28,7 @@ export const legalAdd = legal => (dispatch, getState) => {
 	const config = {
         method: 'post',
         url: '/api/destitution',
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
 		data: { document: legal },
     }
@@ -46,7 +44,7 @@ export const legalUpdate = legal => (dispatch, getState) => {
 	const config = {
         method: 'put',
         url: `/api/destitution/${legal._id}`,
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
 		data: { document: legal },
     }
@@ -62,7 +60,7 @@ export const legalDelete = id => (dispatch, getState) => {
 	const config = {
         method: 'delete',
         url: `/api/destitution/${id}`,
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
     }
 

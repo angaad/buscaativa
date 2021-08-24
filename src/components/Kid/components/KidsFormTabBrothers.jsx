@@ -1,3 +1,8 @@
+/**
+ * @author Frederico Ferracini Duarte
+ * @since 2021-08-20 19:12:27
+ */
+
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons'

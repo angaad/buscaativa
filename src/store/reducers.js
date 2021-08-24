@@ -1,6 +1,6 @@
 /**
- * @ author: Frederico Ferracini Duarte
- * @ since: 2021-07-23 06:43:47
+ * @author Frederico Ferracini Duarte
+ * @since 2021-07-23 06:43:47
  */
 
 import { applyMiddleware, combineReducers, createStore } from 'redux'

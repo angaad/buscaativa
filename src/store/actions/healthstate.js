@@ -5,9 +5,7 @@
 
 import axios from 'axios'
 import { HEALTH_SEARCHED } from '../constants'
-
-const port = process.env.REACT_APP_RESTFUL_PORT ? `:${process.env.REACT_APP_RESTFUL_PORT}` : ''
-const uri = `${process.env.REACT_APP_RESTFUL_URL}${port}`
+import { URL_API } from './urls'
 
 export const healthSearch = _ => (dispatch, getState) => {
     const token = getState().appReducer.token
@@ -15,7 +13,7 @@ export const healthSearch = _ => (dispatch, getState) => {
     const config = {
         method: 'get',
         url: '/api/health',
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
     }
 
@@ -30,7 +28,7 @@ export const healthAdd = health => (dispatch, getState) => {
 	const config = {
         method: 'post',
         url: '/api/health',
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
 		data: { document: health },
     }
@@ -46,7 +44,7 @@ export const healthUpdate = health => (dispatch, getState) => {
 	const config = {
         method: 'put',
         url: `/api/health/${health._id}`,
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
 		data: { document: health },
     }
@@ -62,7 +60,7 @@ export const healthDelete = id => (dispatch, getState) => {
 	const config = {
         method: 'delete',
         url: `/api/health/${id}`,
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
     }
 

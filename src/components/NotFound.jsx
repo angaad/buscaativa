@@ -1,6 +1,6 @@
 /**
- * @ author: Frederico Ferracini Duarte
- * @ since: 2021-07-23 06:35:33
+ * @author Frederico Ferracini Duarte
+ * @since 2021-07-23 06:35:33
  */
 
 import React from "react"

@@ -5,12 +5,10 @@
 
 import axios from 'axios'
 import { LOGEDIN, LOGEDOUT, LOGINERROR } from '../constants'
-
-const port = process.env.REACT_APP_RESTFUL_PORT ? `:${process.env.REACT_APP_RESTFUL_PORT}` : ''
-const uri = `${process.env.REACT_APP_RESTFUL_URL}${port}`
+import { URL_API } from './urls'
 
 export const loginRequest = (user, password) => dispatch => {
-    const url = `${uri}/login`
+    const url = `${URL_API}/login`
     const result = response => {
         let action
 

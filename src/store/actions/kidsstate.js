@@ -5,9 +5,7 @@
 
 import axios from 'axios'
 import { KIDS_SEARCHED, KID_SEARCHED, KID_CLEARED } from '../constants'
-
-const port = process.env.REACT_APP_RESTFUL_PORT ? `:${process.env.REACT_APP_RESTFUL_PORT}` : ''
-const uri = `${process.env.REACT_APP_RESTFUL_URL}${port}`
+import { URL_API } from './urls'
 
 export const kidsSearch = (fields, id) => (dispatch, getState) => {
 	const token = getState().appReducer.token
@@ -26,7 +24,7 @@ export const kidsSearch = (fields, id) => (dispatch, getState) => {
 	const config = {
 		method: 'get',
 		url: url.join(''),
-		baseURL: uri,
+		baseURL: URL_API,
 		headers: { Authorization: `Bearer ${token}`, },
 	}
 
@@ -44,7 +42,7 @@ export const kidAdd = kid => (dispatch, getState) => {
 	const config = {
 		method: 'post',
 		url: '/api/kids',
-		baseURL: uri,
+		baseURL: URL_API,
 		headers: { Authorization: `Bearer ${token}`, },
 		data: { document: kid },
 	}
@@ -60,7 +58,7 @@ export const kidUpdate = kid => (dispatch, getState) => {
 	const config = {
 		method: 'put',
 		url: `/api/kids/${kid._id}`,
-		baseURL: uri,
+		baseURL: URL_API,
 		headers: { Authorization: `Bearer ${token}`, },
 		data: { document: kid },
 	}
@@ -76,7 +74,7 @@ export const kidDelete = id => (dispatch, getState) => {
 	const config = {
 		method: 'delete',
 		url: `/api/kids/${id}`,
-		baseURL: uri,
+		baseURL: URL_API,
 		headers: { Authorization: `Bearer ${token}`, },
 	}
 

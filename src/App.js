@@ -8,8 +8,6 @@ import { connect } from 'react-redux'
 import { Col, Container, Row } from 'react-bootstrap'
 import SideBar from './components/SideBar'
 
-import './App.css'
-
 import NavigationBar from './components/NavigationBar'
 import Routes from './Routes'
 

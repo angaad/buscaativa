@@ -5,9 +5,7 @@
 
 import axios from 'axios'
 import { RACE_SEARCHED } from '../constants'
-
-const port = process.env.REACT_APP_RESTFUL_PORT ? `:${process.env.REACT_APP_RESTFUL_PORT}` : ''
-const uri = `${process.env.REACT_APP_RESTFUL_URL}${port}`
+import { URL_API } from './urls'
 
 export const raceSearch = _ => (dispatch, getState) => {
     const token = getState().appReducer.token
@@ -15,7 +13,7 @@ export const raceSearch = _ => (dispatch, getState) => {
     const config = {
         method: 'get',
         url: '/api/race',
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
     }
 
@@ -30,7 +28,7 @@ export const raceAdd = race => (dispatch, getState) => {
 	const config = {
         method: 'post',
         url: '/api/race',
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
 		data: { document: race },
     }
@@ -46,7 +44,7 @@ export const raceUpdate = race => (dispatch, getState) => {
 	const config = {
         method: 'put',
         url: `/api/race/${race._id}`,
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
 		data: { document: race },
     }
@@ -62,7 +60,7 @@ export const raceDelete = id => (dispatch, getState) => {
 	const config = {
         method: 'delete',
         url: `/api/race/${id}`,
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
     }
 

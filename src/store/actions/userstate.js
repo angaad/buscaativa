@@ -6,9 +6,7 @@
 import axios from 'axios'
 import shajs from 'sha.js'
 import { USER_SEARCHED } from '../constants'
-
-const port = process.env.REACT_APP_RESTFUL_PORT ? `:${process.env.REACT_APP_RESTFUL_PORT}` : ''
-const uri = `${process.env.REACT_APP_RESTFUL_URL}${port}`
+import { URL_API } from './urls'
 
 export const userSearch = _ => (dispatch, getState) => {
     const token = getState().appReducer.token
@@ -16,7 +14,7 @@ export const userSearch = _ => (dispatch, getState) => {
     const config = {
         method: 'get',
         url: '/api/user',
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
     }
 
@@ -33,7 +31,7 @@ export const userAdd = user => (dispatch, getState) => {
 	const config = {
         method: 'post',
         url: '/api/user',
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
 		data: { document: user },
     }
@@ -51,7 +49,7 @@ export const userUpdate = user => (dispatch, getState) => {
 	const config = {
         method: 'put',
         url: `/api/user/${user._id}`,
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
 		data: { document: user },
     }
@@ -67,7 +65,7 @@ export const userDelete = id => (dispatch, getState) => {
 	const config = {
         method: 'delete',
         url: `/api/user/${id}`,
-        baseURL: uri,
+        baseURL: URL_API,
         headers: { Authorization: `Bearer ${token}`, },
     }
 

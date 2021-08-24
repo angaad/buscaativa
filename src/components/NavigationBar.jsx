@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
+import { If } from '../templates/Reusables'
 import { logoutRequest } from '../store/actions/appstate'
 import Logo from '../images/logo-angaad-branca.png'
 
@@ -32,29 +33,28 @@ const NavigationBar = props => (
         </LinkContainer>
         <Navbar.Collapse className='justify-content-end'>
             <Nav activeKey={window.location.pathname}>
-                {props.isAuthenticated ? (
-                    <>
-                        <Nav.Item
-							className='text-light'
-							style={{alignSelf: 'center', marginRight: '1em'}}>
-							<FontAwesomeIcon icon={faUser} />
-							&nbsp;
-                            <span>{props.user.name}</span>
-                        </Nav.Item>
-                        <LinkContainer to='/'>
-                            <Nav.Link
-                                className='text-light'
-                                onClick={props.logoutRequest}>
-                                Sair</Nav.Link>
-                        </LinkContainer>
-                    </>
-                ) : (
+                <If test={props.isAuthenticated}>
+                    <Nav.Item
+                        className='text-light'
+                        style={{alignSelf: 'center', marginRight: '1em'}}>
+                        <FontAwesomeIcon icon={faUser} />
+                        &nbsp;
+                        <span>{props.user.name}</span>
+                    </Nav.Item>
+                    <LinkContainer to='/'>
+                        <Nav.Link
+                            className='text-light'
+                            onClick={props.logoutRequest}>
+                            Sair</Nav.Link>
+                    </LinkContainer>
+                </If>
+                <If test={!props.isAuthenticated}>
                     <LinkContainer to='/login'>
                         <Nav.Link className='text-light'>
                             Entrar
                         </Nav.Link>
                     </LinkContainer>
-                )}
+                </If>
             </Nav>
         </Navbar.Collapse>
     </Navbar>

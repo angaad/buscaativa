@@ -1,3 +1,8 @@
+/**
+ * @author Frederico Ferracini Duarte
+ * @since 2021-08-06 06:46:35
+ */
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'

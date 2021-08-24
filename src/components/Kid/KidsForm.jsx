@@ -1,6 +1,6 @@
 /**
- * @ author: Frederico Ferracini Duarte
- * @ since: 2021-08-02 20:02:05
+ * @author Frederico Ferracini Duarte
+ * @since 2021-08-02 20:02:05
  */
 
 import React, { Component } from 'react'
@@ -9,7 +9,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { CloseButton, DeleteButton, SaveButton, If } from '../../templates/Reusables'
-import { kidsSearch, kidAdd, kidUpdate, kidDelete, kidClear } from '../../store/actions/kidsstate'
+import { kidsSearch, kidAdd, kidUpdate, kidDelete, kidClear }
+	from '../../store/actions/kidsstate'
 import KidsFormTabBio from './components/KidsFormTabBio'
 import KidsFormTabHealth from './components/KidsFormTabHealth'
 import KidsFormTabBasic from './components/KidsFormTabBasic'
