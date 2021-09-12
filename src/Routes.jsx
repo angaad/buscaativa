@@ -5,6 +5,7 @@
 
 import React from 'react'
 import { Route, Switch } from 'react-router'
+
 import NotFound from './components/NotFound'
 import Home from './components/Home'
 import Login from './components/Login'
@@ -15,6 +16,7 @@ import Kids from './components/Kid/Kids'
 import RacePage from './components/Race/RacePage'
 import LegalStatusPage from './components/LegalStatus/LegalStatusPage'
 import HealthPage from './components/Health/HealthPage'
+import KidsSearch from './components/KidsSearch/KidsSearch'
 
 const Routes = _ => (
     <Switch>
@@ -42,6 +44,9 @@ const Routes = _ => (
 		<PrivateRoute exact path='/internal/kids'>
 			<Kids />
 		</PrivateRoute>
+        <PrivateRoute exact path='/internal/searchforkids'>
+            <KidsSearch />
+        </PrivateRoute>
 
         <Route>
             <NotFound />

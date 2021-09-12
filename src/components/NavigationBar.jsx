@@ -39,7 +39,7 @@ const NavigationBar = props => (
                         style={{alignSelf: 'center', marginRight: '1em'}}>
                         <FontAwesomeIcon icon={faUser} />
                         &nbsp;
-                        <span>{props.user.name}</span>
+                        <span>{(props.user) ? props.user.name : ''}</span>
                     </Nav.Item>
                     <LinkContainer to='/'>
                         <Nav.Link
