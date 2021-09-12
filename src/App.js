@@ -6,16 +6,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Col, Container, Row } from 'react-bootstrap'
-import SideBar from './components/SideBar'
 
+import SideBar from './components/SideBar'
 import NavigationBar from './components/NavigationBar'
 import Routes from './Routes'
+import { If } from './templates/Reusables'
 
 const App = ({ isAuthenticated }) => (
     <div>
         <NavigationBar />
 		<Container fluid>
-        	{isAuthenticated ? (
+            <If test={isAuthenticated}>
                 <Row>
                     <Col xs={2} style={{paddingLeft: 0}}>
                         <SideBar />
@@ -24,11 +25,12 @@ const App = ({ isAuthenticated }) => (
                         <Routes />
                     </Col>
                 </Row>
-        	) : (
+            </If>
+            <If test={!isAuthenticated}>
                 <Row>
                     <Routes />
                 </Row>
-        	)}
+            </If>
 		</Container>    
     </div>
 )
